@@ -2,24 +2,26 @@ require_relative 'cards.rb'
 
 def show_board(drawpile_1,drawpile_2,drawpile_3,drawpile_4,playpile_5,playpile_6,playpile_7,playpile_8)
   system "clear" 
-  puts "Draw Pile #1: [ #{drawpile_1.join(' ')} ]"
-  puts "Draw Pile #2: [ #{drawpile_2.join(' ')} ]"
-  puts "Draw Pile #3: [ #{drawpile_3.join(' ')} ]"
-  puts "Draw Pile #4: [ #{drawpile_4.join(' ')} ]"
-  # puts "Draw Pile #1: [ #{drawpile_1[0]} ]"
-  # puts "Draw Pile #2: [ #{drawpile_2[0]} ]"
-  # puts "Draw Pile #3: [ #{drawpile_3[0]} ]"
-  # puts "Draw Pile #4: [ #{drawpile_4[0]} ]"
+  puts "   Drawing decks"
+  puts "--------------------"
+  # puts "    #1: [ #{drawpile_1.join(' ')} ]"
+  # puts "    #2: [ #{drawpile_2.join(' ')} ]"
+  # puts "    #3: [ #{drawpile_3.join(' ')} ]"
+  # puts "    #4: [ #{drawpile_4.join(' ')} ]"
+  puts "   #1: [ #{drawpile_1[0]} ]"
+  puts "   #2: [ #{drawpile_2[0]} ]"
+  puts "   #3: [ #{drawpile_3[0]} ]"
+  puts "   #4: [ #{drawpile_4[0]} ]"
   puts ""
-  puts "Play Pile #5: [ #{playpile_5.join(' ')} ]"
-  puts "Play Pile #6: [ #{playpile_6.join(' ')} ]"
-  puts "Play Pile #7: [ #{playpile_7.join(' ')} ]"
-  puts "Play Pile #8: [ #{playpile_8.join(' ')} ]"
+  puts "   Playing stacks"
+  puts "--------------------"
+  puts "   #5: [ #{playpile_5.join(' ')} ]"
+  puts "   #6: [ #{playpile_6.join(' ')} ]"
+  puts "   #7: [ #{playpile_7.join(' ')} ]"
+  puts "   #8: [ #{playpile_8.join(' ')} ]"
   puts ""
 end
 
-
-# Run it, and try some stuff...
 my_deck = Deck.new
 my_deck.shuffle!
 
@@ -45,9 +47,10 @@ playpile_8 << drawpile_4.shift
 show_board(drawpile_1,drawpile_2,drawpile_3,drawpile_4,playpile_5,playpile_6,playpile_7,playpile_8)
 
 while (!drawpile_1.empty? || !drawpile_2.empty? || !drawpile_3.empty? || !drawpile_4.empty?)
-  puts "Move from which pile?"
+  print "Move from pile? "
   n=gets.chomp
-  
+  print "Move  to  pile? "
+  to=gets.chomp
   case n
   when '1'
     if !drawpile_1.empty?
@@ -74,4 +77,4 @@ while (!drawpile_1.empty? || !drawpile_2.empty? || !drawpile_3.empty? || !drawpi
   show_board(drawpile_1,drawpile_2,drawpile_3,drawpile_4,playpile_5,playpile_6,playpile_7,playpile_8)
 end
 
-puts "YOU WIN!"
+puts "  YOU WIN!"

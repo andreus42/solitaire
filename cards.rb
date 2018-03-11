@@ -1,7 +1,7 @@
 class Deck
 
   def initialize
-    @ranks = %w(2 3 4 5 6 7 8 9 10 J Q K A)
+    @ranks = %w(2 3 4 5 6 7 8 9 10 11 12 13 14)
     @suits = %w(C D H S)
     @cards = []
 
@@ -54,82 +54,43 @@ class Card
   end
 
   def to_s
-    "#{@rank}(#{@suit})"
+    if @rank.to_i <= 10
+      "#{@rank}(#{@suit})"
+    elsif @rank.to_i == 11
+      "J(#{@suit})"
+    elsif @rank.to_i == 12
+      "Q(#{@suit})"
+    elsif @rank.to_i == 13
+      "K(#{@suit})"
+    elsif @rank.to_i == 14
+      "A(#{@suit})"
+    end
   end
+  
+  def ==(other)
+    if (self.rank && other.rank) && (self.rank && other.suit)
+      return true
+    end  
+  end
+  
 end
 
-def show_board(drawpile_1,drawpile_2,drawpile_3,drawpile_4,playpile_5,playpile_6,playpile_7,playpile_8)
-  system "clear" 
-  puts "Draw Pile #1: [ #{drawpile_1.join(' ')} ]"
-  puts "Draw Pile #2: [ #{drawpile_2.join(' ')} ]"
-  puts "Draw Pile #3: [ #{drawpile_3.join(' ')} ]"
-  puts "Draw Pile #4: [ #{drawpile_4.join(' ')} ]"
-  # puts "Draw Pile #1: [ #{drawpile_1[0]} ]"
-  # puts "Draw Pile #2: [ #{drawpile_2[0]} ]"
-  # puts "Draw Pile #3: [ #{drawpile_3[0]} ]"
-  # puts "Draw Pile #4: [ #{drawpile_4[0]} ]"
-  puts ""
-  puts "Play Pile #5: [ #{playpile_5.join(' ')} ]"
-  puts "Play Pile #6: [ #{playpile_6.join(' ')} ]"
-  puts "Play Pile #7: [ #{playpile_7.join(' ')} ]"
-  puts "Play Pile #8: [ #{playpile_8.join(' ')} ]"
-  puts ""
-end
-
-
-# Run it, and try some stuff...
 my_deck = Deck.new
 my_deck.shuffle!
 
-#initialize card piles
-drawpile_1, drawpile_2, drawpile_3, drawpile_4 = [], [], [], []
-playpile_5, playpile_6, playpile_7, playpile_8 = [], [], [], []
+card0 = Card.new(14, "S")
+card1 = Card.new(2, "S")
+card2 = Card.new(2, "S")
 
-# Deal shuffled cards into four piles
-while my_deck.count > 0 do
-  drawpile_1 << my_deck.deal
-  drawpile_2 << my_deck.deal
-  drawpile_3 << my_deck.deal
-  drawpile_4 << my_deck.deal
-end
+puts card0.rank==card1.rank
+puts card0.rank-1
+puts card0.to_s
 
-# Move top cards of discard pile to play pile
-playpile_5 << drawpile_1.shift
-playpile_6 << drawpile_2.shift
-playpile_7 << drawpile_3.shift
-playpile_8 << drawpile_4.shift
+puts "----"
+puts card1==card2
+puts card2==card1
+puts "#{card1==card0} ?"
 
-# Show Game Status
-show_board(drawpile_1,drawpile_2,drawpile_3,drawpile_4,playpile_5,playpile_6,playpile_7,playpile_8)
 
-while (!drawpile_1.empty? || !drawpile_2.empty? || !drawpile_3.empty? || !drawpile_4.empty?)
-  puts "Move from which pile?"
-  n=gets.chomp
-  
-  case n
-  when '1'
-    if !drawpile_1.empty?
-      playpile_5 << drawpile_1.shift
-    end
-  when '2'
-    if !drawpile_2.empty?
-      playpile_6 << drawpile_2.shift
-    end
-  when '3'
-    if !drawpile_3.empty?
-      playpile_7 << drawpile_3.shift
-    end
-  when '4'
-    if !drawpile_4.empty?
-      playpile_8 << drawpile_4.shift
-    end
-  when '5'
-    if !playpile_6.empty? && (playpile_5[-1] = playpile_6[0] || playpile_5[-1] = playpile_6[0]-1 || playpile_5[-1] = playpile_6[0]+1)
-      playpile_5 << playpile_6
-      playpile_6 = []
-    end
-  end
-  show_board(drawpile_1,drawpile_2,drawpile_3,drawpile_4,playpile_5,playpile_6,playpile_7,playpile_8)
-end
-
-puts "YOU WIN!"
+puts card1.rank==card2.rank
+puts card1.suit==card2.suit
