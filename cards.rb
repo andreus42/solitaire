@@ -1,8 +1,10 @@
 class Deck
 
   def initialize
-    @ranks = %w(2 3 4 5 6 7 8 9 10 11 12 13 14)
-    @suits = %w(C D H S)
+    # @ranks = %w(2 3 4 5 6 7 8 9 10 11 12 13 14)
+    # @suits = %w(C D H S)
+    @ranks = %w(9 10 11 12 13 14)
+    @suits = %w(H S)
     @cards = []
 
     @ranks.each do |rank|
@@ -35,7 +37,7 @@ class Deck
   def shuffle!
     @cards.shuffle!
   end
-
+  
   def to_s
     result = ''
     @cards.each do |card|
@@ -74,23 +76,3 @@ class Card
   end
   
 end
-
-my_deck = Deck.new
-my_deck.shuffle!
-
-card0 = Card.new(14, "S")
-card1 = Card.new(2, "S")
-card2 = Card.new(2, "S")
-
-puts card0.rank==card1.rank
-puts card0.rank-1
-puts card0.to_s
-
-puts "----"
-puts card1==card2
-puts card2==card1
-puts "#{card1==card0} ?"
-
-
-puts card1.rank==card2.rank
-puts card1.suit==card2.suit
