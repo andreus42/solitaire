@@ -1,10 +1,12 @@
+require 'colorize'
+
 class Deck
 
   def initialize
-    # @ranks = %w(2 3 4 5 6 7 8 9 10 11 12 13 14)
-    # @suits = %w(C D H S)
-    @ranks = %w(9 10 11 12 13 14)
-    @suits = %w(H S)
+    @ranks = %w(2 3 4 5 6 7 8 9 10 11 12 13 14)
+    @suits = %w(♣ ♦ ♥ ♠)
+    # @ranks = %w(9 10 11 12 13 14)
+    # @suits = %w(H S)
     @cards = []
 
     @ranks.each do |rank|
@@ -13,7 +15,7 @@ class Deck
         end
       end
   end
-
+  
   def deal
     @cards.shift
   end
@@ -53,6 +55,7 @@ class Card
   def initialize(rank, suit)
     @rank = rank
     @suit = suit
+    @color = color
   end
 
   def to_s
@@ -68,6 +71,15 @@ class Card
       "A(#{@suit})"
     end
   end
+  
+  def color
+    if @suit == "♥" || @suit == "♦"
+      color = "red" 
+    else
+      color = "black"
+    end
+  end
+  
   
   def ==(other)
     if (self.rank && other.rank) && (self.rank && other.suit)

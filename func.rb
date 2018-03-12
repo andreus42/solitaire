@@ -1,3 +1,5 @@
+require_relative 'cards.rb'
+# move card from deck to stack
 def move_card(draw, play)
   if play.empty? && draw.any?
     play << draw.shift
@@ -7,6 +9,7 @@ def move_card(draw, play)
   end
 end
 
+# move card from stack to stack
 def move_pile(play1, play2)
   if play2.empty?
     play2.concat(play1)
@@ -44,11 +47,6 @@ def within_one(x,y)
   end
 end
 
-def hi
-  puts "Hello, player!"
-  x = gets
-end
-
 def show_board_show_draw(d1,d2,d3,d4,p5,p6,p7,p8)
   system "clear" 
   puts "   Drawing decks"
@@ -71,16 +69,54 @@ def show_board_hide_draw(d1,d2,d3,d4,p5,p6,p7,p8)
   system "clear" 
   puts "   Drawing decks"
   puts "--------------------"
-  puts "    #1: [ #{d1[0]} ] #{d1.count} left"
-  puts "    #2: [ #{d2[0]} ] #{d2.count} left"
-  puts "    #3: [ #{d3[0]} ] #{d3.count} left"
-  puts "    #4: [ #{d4[0]} ] #{d4.count} left"
+  print "    #1: [ "
+  color_print(d1[0])
+  puts "] #{d1.count} left"
+  print "    #2: [ "
+  color_print(d2[0])
+  puts "] #{d2.count} left"
+  print "    #3: [ "
+  color_print(d3[0])
+  puts "] #{d3.count} left"
+  print "    #4: [ "
+  color_print(d4[0])
+  puts "] #{d4.count} left"
   puts ""
   puts "   Playing stacks"
   puts "--------------------"
-  puts "   #5: [ #{p5.join(' ')} ]"
-  puts "   #6: [ #{p6.join(' ')} ]"
-  puts "   #7: [ #{p7.join(' ')} ]"
-  puts "   #8: [ #{p8.join(' ')} ]"
+  print "   #5: [ "
+  p5.each { |card| color_print(card) }
+  puts"]"
+  print "   #6: [ "
+  p6.each { |card| color_print(card) }
+  puts"]"
+  print "   #7: [ "
+  p7.each { |card| color_print(card) }
+  puts"]"
+  print "   #8: [ "
+  p8.each { |card| color_print(card) }
+  puts"]"
+  
   puts ""
 end
+
+def color_print(card)
+  if card.nil? 
+    return 
+  end
+  if card.color == "red"
+    print "#{card} ".red
+  else
+    print "#{card} ".blue
+  end
+end
+
+# card1 = Card.new(14, "S")
+# card2 = Card.new(14, "H")
+# card3 = Card.new(13, "D")
+# card4 = Card.new(13, "C")
+# color_print(card1)
+# color_print(card2)
+# deck = [card1, card2, card3, card4]
+# deck.each { |card| color_print(card) }
+  
