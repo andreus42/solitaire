@@ -10,27 +10,39 @@ def move_card(draw, play)
 end
 
 # move card from stack to stack
+# def move_pile(play1, play2)
+#   if play2.empty?
+#     play2.concat(play1)
+#     play1.clear
+#   elsif (within_one(play1[0].rank.to_i, play2[-1].rank.to_i) && (within_one(play1[0].rank.to_i, play2[-1].rank.to_i)))
+#       print "front or back?"
+#       side=gets.chomp
+#       if side == "front"
+#         play1.concat(play2)
+#         play2.clear  
+#       elsif side == "back"
+#         play2.concat(play1)
+#         play1.clear
+#       else
+#       end
+#   elsif (within_one(play1[0].rank.to_i, play2[-1].rank.to_i))
+#       play1.concat(play2)
+#       play1.clear
+#   elsif (within_one(play1[0].rank.to_i, play2[0].rank.to_i))
+#       play1.concat(play2)
+#       play1.clear
+#   else
+#   end
+# end
+
+# Experimental
 def move_pile(play1, play2)
   if play2.empty?
     play2.concat(play1)
     play1.clear
-  elsif (within_one(play1[0].rank.to_i, play2[-1].rank.to_i) && (within_one(play1[0].rank.to_i, play2[-1].rank.to_i)))
-      print "front or back?"
-      side=gets.chomp
-      if side == "front"
-        play1.concat(play2)
-        play2.clear  
-      elsif side == "back"
-        play2.concat(play1)
-        play1.clear
-      else
-      end
   elsif (within_one(play1[0].rank.to_i, play2[-1].rank.to_i))
-      play1.concat(play2)
-      play1.clear
-  elsif (within_one(play1[0].rank.to_i, play2[0].rank.to_i))
-      play1.concat(play2)
-      play1.clear
+    play2.concat(play1)
+    play1.clear
   else
   end
 end
