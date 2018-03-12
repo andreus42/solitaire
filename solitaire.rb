@@ -1,5 +1,4 @@
 require_relative 'cards.rb'
-require_relative 'func.rb'
 
 # Initialize new deck and shuffle
 my_deck = Deck.new
